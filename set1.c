@@ -7,7 +7,6 @@ void checkAndStore(int array1[], int s1, int array2[], int s2, int bit[]) {
             if (array1[i] == array2[j]) {
                 found = 1;
                 break;
-
             }
         }
 
@@ -35,7 +34,7 @@ void differenceArrays(int array1[], int s1, int array2[], int s2, int diff[]) {
 
 int main() {
     int s1,s2,s3;
-    printf("Enter the size of universal set:\n");
+    printf("Enter the size of universal set:");
     scanf("%d",&s1);
     int array1[s1];
     printf("Enter the universal set:\n");
@@ -44,18 +43,18 @@ int main() {
         scanf("%d",&array1[i]);
     }
 
-    printf("Enter the size of first subset:");
+    printf("\nEnter the size of first subset S1:");
     scanf("%d",&s2);
     int array2[s2];
-    printf("Enter first subset:\n");
+    printf("Enter first subset S1:\n");
     for(int i=0;i<s2;i++)
     {
         scanf("%d",&array2[i]);
     }
-     printf("Enter the size of second subset:");
+     printf("\nEnter the size of second subset S2:");
     scanf("%d",&s3);
     int array3[s3];
-    printf("Enter second subset:\n");
+    printf("Enter second subset S2:\n");
     for(int i=0;i<s3;i++)
     {
         scanf("%d",&array3[i]);
@@ -65,22 +64,22 @@ int main() {
     int bit2[s1];
     int unio_n[s1];
     int intersect[s1];
-    int diff[s1];
+    int diff1[s1];
+    int diff2[s1];
 
 
     checkAndStore(array1,s1,array2,s2,bit1);
     checkAndStore(array1,s1,array3,s3,bit2);
     unionArrays(bit1,s1,bit2,s1,unio_n);
     intersectionArrays(bit1,s1,bit2, s1,intersect);
-    differenceArrays(bit1,s1,bit2,s1,diff);
-   
-  
-    // Printing the result
+    differenceArrays(bit1,s1,bit2,s1,diff1);
+    differenceArrays(bit2,s1,bit1,s1,diff2);
+
     printf("\nUniversal set:\n ");
     for (int i = 0; i < s1; i++) {
         printf("%d ",array1[i]);
     }
-      printf("\nFirst subset: \n");
+      printf("\nFirst subset S1:\n");
     for (int i = 0; i < s2; i++) {
         printf("%d ", array2[i]);
     }
@@ -89,7 +88,7 @@ int main() {
         printf("%d ", bit1[i]);
     }
     printf("]");
-      printf("\nSecond subset:\n ");
+      printf("\nSecond subset S2:\n ");
     for (int i = 0; i < s3; i++) {
         printf("%d ", array3[i]);
     }
@@ -100,21 +99,21 @@ int main() {
                [i]);
     }
       printf("]");
-     printf("\nUnion Bitstring:\n ");
+     printf("\nUnion bitstring S1 UNION S2:\n ");
     for (int i = 0; i < s1; i++) {
         printf("%d ", unio_n[i]);
     }
-          printf("\nUnion:\n ");
+          printf("\nUnion S1 UNION S2:\n ");
     for (int i = 0; i < s1; i++) {
        if(unio_n[i]==1)
         printf("%d ", array1[i]);
     }
 
-     printf("\nIntersection  bitstring:\n ");
+     printf("\nIntersection  bitstring S1 INTERSECTION S2:\n ");
     for (int i = 0; i < s1; i++) {
         printf("%d ", intersect[i]);
     }
-  printf("\n Intersection:\n");
+  printf("\nIntersection S1 INTERSECTION S2:\n");
  for(int i=0;i<s1;i++)
   {
 if(intersect[i]==1)
@@ -122,23 +121,27 @@ if(intersect[i]==1)
    printf("%d",array1[i]);
 
   }
-     printf("\nDifference Bitstring:\n ");
+     printf("\nDifference bitstring S1-S2:\n ");
     for (int i = 0; i < s1; i++) {
-        printf("%d ", diff[i]);
+        printf("%d ", diff1[i]);
     }
- printf("\nDifference:\n ");
+ printf("\nDifference S1-S2:\n ");
     for (int i = 0; i < s1; i++) {
-       if(diff[i]==1)
+       if(diff1[i]==1)
         printf("%d ", array1[i]);
     }
 
+     printf("\nDifference Bitstring S2-S1:\n ");
+	for(int i=0; i<s1; i++){
+		printf("%d ",diff2[i]);
+	}
+     printf("\nDifference S2-S1:\n");
+	for(int i=0; i<s1; i++){
+		if(diff2[i]==1){
+			printf("%d ",array1[i]);
+		}
+	}
+	printf("\n");
 
     return 0;
 }
-
-
-
-
-
-
-
